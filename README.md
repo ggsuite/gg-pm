@@ -94,9 +94,10 @@ and the file names in detail.
 
 ## Status
 
-The current quarter is [2026-Q4](doc/2026-Q4). The repo is new: no goal is
-confirmed, no requirement is accepted and the team is not written down
-yet.
+The current quarter is [2026-Q4](doc/2026-Q4). One goal is proposed:
+[publish a ticket in minutes](doc/2026-Q4/goals/publish-a-ticket-in-minutes.md).
+Its five [requirements](doc/2026-Q4/requirements), in the areas `publish`
+and `maintain`, are accepted. The team is not written down yet.
 
 ## Contributing
 
@@ -107,4 +108,4 @@ See the [Develop Guide](doc/guides/develop-guide.md).
 
 ## License
 
-Proprietary — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).

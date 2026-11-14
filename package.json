@@ -5,7 +5,7 @@
   "homepage": "https://github.com/ggsuite/gg-pm",
   "bugs": "https://github.com/ggsuite/gg-pm/issues",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "node": ">=22"
   },
