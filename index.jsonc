@@ -1,0 +1,33 @@
+// @license
+// Copyright (c) ggsuite
+//
+// Use of this source code is governed by terms that can be
+// found in the LICENSE file in the root of this package.
+
+{
+  // The package name, as declared in pubspec.yaml / package.json.
+  "name": "@ggsuite/gg-pm",
+
+  // 1-2 sentence summary about this repo.
+  "summary": "Project management of gg, the CLI that develops a workspace of repos ticket by ticket: goals, requirements, concepts, architecture, ticket plans, schedule, decisions, blog. No code.",
+
+  // 1-3 bullet points: the problem space.
+  "domain": [
+    "goals and requirements of gg across quarters, ticket plans across the gg_* repos",
+    "decisions and target architecture of gg",
+    "blog posts per finished ticket"
+  ],
+
+  // The repos this one depends on and the repos depending on it.
+  // Keep the reason or the API behind each entry, not just the name.
+  "interfaces": {
+    // "<repo-a>": "why / API"
+    "uses": {
+      "dna_plan": "PM repo guide, requirements engineering, time planning",
+      "dna_ggsuite": "conventions, guides, skills, quick check"
+    },
+
+    // "<repo-b>": "why / API"
+    "usedBy": {}
+  }
+}
