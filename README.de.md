@@ -97,9 +97,12 @@ Dateinamen im Detail.
 
 ## Status
 
-Das aktuelle Quartal ist [2026-Q4](doc/de/2026-Q4). Das Repo ist neu: Kein
-Ziel ist bestätigt, keine Anforderung akzeptiert, und das Team ist noch
-nicht eingetragen.
+Das aktuelle Quartal ist [2026-Q4](doc/de/2026-Q4). Ein Ziel ist
+vorgeschlagen:
+[Ein Ticket in Minuten veröffentlichen](doc/de/2026-Q4/goals/publish-a-ticket-in-minutes.md).
+Seine fünf [Anforderungen](doc/de/2026-Q4/requirements), in den Bereichen
+`publish` und `maintain`, sind akzeptiert. Das Team ist noch nicht
+eingetragen.
 
 ## Mitwirken
 
@@ -111,4 +114,4 @@ Siehe den [Develop Guide](doc/guides/develop-guide.md).
 
 ## Lizenz
 
-Proprietär — siehe [LICENSE](LICENSE).
+MIT — siehe [LICENSE](LICENSE).
