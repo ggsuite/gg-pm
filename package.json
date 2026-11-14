@@ -1,0 +1,47 @@
+{
+  "name": "@ggsuite/gg-pm",
+  "version": "0.0.1",
+  "description": "Project management for gg: goals, requirements, concepts, plans, decisions and blog",
+  "homepage": "https://github.com/ggsuite/gg-pm",
+  "bugs": "https://github.com/ggsuite/gg-pm/issues",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ggsuite/gg-pm.git"
+  },
+  "type": "module",
+  "main": "dist/gg-pm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/gg-pm.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "prebuild": "pnpm run test",
+    "test": "vitest run --coverage && pnpm run lint",
+    "lint": "tsc --noEmit && eslint",
+    "prepublishOnly": "pnpm run build"
+  },
+  "packageManager": "pnpm@11.22.0",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^10.14.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^8.3.8",
+    "vite-plugin-dts": "^5.1.2",
+    "vitest": "^5.1.0"
+  }
+}
