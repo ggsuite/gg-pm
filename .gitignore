@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
 .gg/*
+!.gg/gg_rc
 !.gg/gg.json
