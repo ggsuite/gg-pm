@@ -27,43 +27,11 @@ Das Ticket ist nur geplant. Umgesetzt wird es nach dem Merge des Tickets
   zieht nur die Wartung hoch, und ein nächtlicher Build hält den Ocean
   aktuell
 
-Entscheidungen, auf denen der Plan beruht:
-[publish-001](../concepts/decisions/publish-001.md) und
+Was ein Publish und die Wartung heute tun, steht in den Themen
+[publish](../concepts/topics/publish.md) und
+[maintain](../concepts/topics/maintain.md). Die Entscheidungen, auf denen
+der Plan beruht: [publish-001](../concepts/decisions/publish-001.md) und
 [maintain-001](../concepts/decisions/maintain-001.md).
-
-## Befunde
-
-Was `gg do publish` heute für jedes Repo des Tickets tut, in dieser
-Reihenfolge (`_publishRepo` in
-`gg_multi_do_publish/lib/src/commands/do/publish.dart`), und was das
-Ticket ändert:
-
-| Schritt heute                                                                                                                                                                                      | Nach dem Ticket                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Die Refs auf veröffentlichte Versionen umstellen und die Versionen der in diesem Lauf veröffentlichten Geschwister setzen; der Operator bleibt, aus `^1.2.3` wird `^<neu>` (`_changeRefsToPubDev`) | Bleibt: die eine Manifest-Änderung, die ein Publish braucht         |
-| Alle Abhängigkeiten hochziehen: `dart pub upgrade --major-versions --tighten`, `pnpm update --latest` (`DoUpgradeDeps`; Major-Versionen sind standardmäßig an)                                      | Entfällt; das macht der nächtliche Build                            |
-| Die Abhängigkeiten mit `dart pub upgrade` oder `<pm> install` auffrischen, zweimal pro Repo (`_refreshDependencies`)                                                                                | `dart pub get` oder `<pm> install`                                  |
-| `can commit` noch einmal laufen lassen — analyze, format, Tests —, weil sich das Manifest geändert hat und der Hash des geprüften Stands nicht mehr passt                                           | Nur `dart analyze`; der Hash der Prüfungen wird trotzdem geschrieben |
-| System-Commit »changed references to pub.dev«, `can publish` mit pana, Push                                                                                                                        | Bleibt                                                              |
-| Den Pull Request mergen und warten, hochladen, auf die Registry warten, taggen, den Workspace auf lokale Refs zurückstellen                                                                         | Bleibt                                                              |
-
-Außerdem gefunden:
-
-- Auch `gg do push` zieht die Abhängigkeiten hoch; nur die Prüfungen des
-  Publish schalten das ab
-- Ob Major-Versionen übersprungen werden, steuert die Einstellung
-  `do.upgrade.deps.majorVersions` in `.gg/gg_rc`; ihr Standard ist true
-- Der Quick Check auf GitHub lässt keine Tests laufen: Er prüft nur, dass
-  der Commit mit gg gemacht wurde, über den Hash, den `can commit`
-  schreibt. Ein Publish, der `can commit` weglässt, muss diesen Hash für
-  den Commit schreiben, den er macht
-- `gg do maintain` gibt es (`gg_multi_maintain`): pro Repo ein frischer
-  Klon, ein Branch `maintain_<id>`, die Aufgaben `--upgrade-sdk`,
-  `--upgrade-deps [--major]`, `--upgrade-dna`, danach `gg one do commit`
-  und `gg one do publish`, in Abhängigkeitsreihenfolge. Major-Versionen
-  brauchen `--major`
-- Nichts läuft nach Zeitplan: Der einzige Workflow ist `quick_check.yaml`
-  bei Push und Pull Request. Einen nächtlichen Build gibt es nicht
 
 ## Betroffene Repos
 

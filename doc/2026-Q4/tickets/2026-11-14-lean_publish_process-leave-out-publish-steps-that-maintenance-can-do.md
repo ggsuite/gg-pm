@@ -25,41 +25,11 @@ The ticket is planned only. It is implemented after the ticket
   are raised by maintenance only, and a nightly build keeps the ocean
   current
 
-Decisions the plan rests on:
-[publish-001](../concepts/decisions/publish-001.md) and
+What a publish and the maintenance do today is in the topics
+[publish](../concepts/topics/publish.md) and
+[maintain](../concepts/topics/maintain.md). The decisions the plan rests
+on: [publish-001](../concepts/decisions/publish-001.md) and
 [maintain-001](../concepts/decisions/maintain-001.md).
-
-## Findings
-
-What `gg do publish` does today for every repo of the ticket, in this
-order (`_publishRepo` in
-`gg_multi_do_publish/lib/src/commands/do/publish.dart`), and what the
-ticket changes:
-
-| Step today                                                                                                                                                              | After the ticket                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Switch the refs to published versions and set the versions of the siblings published in this run; the operator stays, `^1.2.3` becomes `^<new>` (`_changeRefsToPubDev`) | Stays: the one manifest change a publish needs                      |
-| Upgrade all dependencies: `dart pub upgrade --major-versions --tighten`, `pnpm update --latest` (`DoUpgradeDeps`; major versions are on by default)                     | Gone; the nightly build does it                                     |
-| Refresh the dependencies with `dart pub upgrade` or `<pm> install`, twice per repo (`_refreshDependencies`)                                                             | `dart pub get` or `<pm> install`                                    |
-| Run `can commit` again — analyze, format, tests — because the manifest changed and the hash of the checked tree no longer fits                                          | `dart analyze` only; the hash of the checks is written all the same |
-| System commit »changed references to pub.dev«, `can publish` with pana, push                                                                                            | Stays                                                               |
-| Merge the pull request and wait, upload, wait for the registry, tag, switch the workspace back to local refs                                                            | Stays                                                               |
-
-Also found:
-
-- `gg do push` upgrades the dependencies too; only the checks of the
-  publish switch that off
-- Whether major versions are crossed is the setting
-  `do.upgrade.deps.majorVersions` of `.gg/gg_rc`; it defaults to true
-- The quick check on GitHub runs no tests: it only checks that the commit
-  was made with gg, by the hash `can commit` writes. A publish that
-  leaves `can commit` out has to write that hash for the commit it makes
-- `gg do maintain` exists (`gg_multi_maintain`): per repo a fresh clone,
-  a branch `maintain_<id>`, the tasks `--upgrade-sdk`, `--upgrade-deps
-  [--major]`, `--upgrade-dna`, then `gg one do commit` and
-  `gg one do publish`, in dependency order. Major versions need `--major`
-- Nothing runs on a schedule: the only workflow is `quick_check.yaml` on
-  push and pull request. A nightly build does not exist
 
 ## Affected repos
 
