@@ -152,14 +152,18 @@ root
 
 - Group requirements by area of the product, one file per area:
   `doc/<quarter>/requirements/<area>.md`, area in English kebab case
-- Give each requirement an ID `req-<area>-<nnn>`, e.g. `req-results-001`;
-  the prefix keeps it apart from decision IDs. Never reuse or renumber an
-  ID. A new ID follows the highest one of the area in all quarters, since
-  finished requirements stay behind in older quarters
+- Give each requirement an ID `req-<area>-<abc>`: `<abc>` is a code of
+  three lowercase letters that sums up the requirement, e.g.
+  `req-results-lst` for the result list. The code is unique within its
+  area across all quarters; the prefix keeps it apart from decision IDs
+- Never put a number into a requirement ID: requirements are reordered
+  without renumbering. Never reuse or rename an ID
+- Refer to several requirements of one area by the first full ID and the
+  codes of the others: `req-results-lst, imp, exp`
 - Write each requirement as its own section:
 
 ```markdown
-## req-results-001: Result list right after the race
+## req-results-lst: Result list right after the race
 
 - Status: accepted
 - Priority: must

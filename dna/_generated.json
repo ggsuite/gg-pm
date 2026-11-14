@@ -119,7 +119,7 @@
       "ecosystem": null,
       "resolvedVersion": null,
       "via": null,
-      "hash": "0x00000000811c9dc5"
+      "hash": "0x537e66b3f1687d88"
     }
   ],
   "claude": {
@@ -375,7 +375,7 @@
     },
     {
       "path": "doc/guides/pm-repo-guide.md",
-      "hash": "0xc45373b56d50bef3"
+      "hash": "0xa3871e2b6d5396d3"
     },
     {
       "path": "doc/guides/readme-dna-guide.md",
