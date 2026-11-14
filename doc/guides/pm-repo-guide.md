@@ -1,6 +1,6 @@
 <!--
 @license
-Copyright (c) ggdna
+Copyright (c) ggsuite
 
 Use of this source code is governed by terms that can be
 found in the LICENSE file in the root of this package.
@@ -346,7 +346,7 @@ root
   one file per session in the quarter the session started, the time of
   each prompt as its heading
 - The `dna_gg` layer does it: a Claude Code hook in every repo whose
-  variable `dnaPmRepo` names this repo. The hook commits to the branch
+  variable `` names this repo. The hook commits to the branch
   `prompts` directly, so the main branch and its checks stay untouched
 - The name is the first name in `team/people.md` of the newest quarter
   that the git user
