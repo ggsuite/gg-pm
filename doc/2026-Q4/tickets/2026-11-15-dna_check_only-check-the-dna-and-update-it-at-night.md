@@ -2,7 +2,8 @@
 
 ## Goal
 
-Noted on 2026-11-15, not planned in detail yet.
+Noted on 2026-11-15. Steps 1-3 implemented in the ticket `dna_check_only`
+(2026-11-15); steps 4-7 follow in the tickets below.
 
 Every repo checks that the files its DNA generated are unchanged, and
 nothing more: the check writes no DNA and commits nothing. New DNA arrives
@@ -72,3 +73,34 @@ It serves the goal
   there a pub package for it?
 - The Dart repos also list ordinary packages such as `gg_log` and
   `gg_args` as DNA layers in `dna/_generated.json` — intended?
+
+## Implemented in dna_check_only
+
+- `helix`: `instantiateDna(checkOnly: true)` plans the run and writes
+  nothing; `checkDna()` fails on generated files changed by hand (naming
+  the DNA file the edit belongs in) and only reports outstanding DNA
+  updates with `gg dna build`
+- `helix`: the placed check `test/dna/dna_test.dart` calls `checkDna()`;
+  a Dart project (`pubspec.yaml`) gets the Dart check, a TypeScript
+  project the vitest check `test/dna/dna.spec.ts`. `helix init` always
+  replaces the check; the new `helix upgrade` (`gg dna upgrade`) places
+  it and builds
+- `helix-js`: `checkDna()` for vitest, through the same engine
+- `gg_multi_maintain`: `--upgrade-dna` runs `gg dna upgrade` after the
+  layer upgrade instead of the DNA test
+
+Answers to the first two open questions: the check lives in helix and is
+placed by helix; a failed check names each changed file and the DNA file
+to edit instead.
+
+## Follow-up tickets
+
+1. `dna_ggsuite` layers: choose which ggdna layers `dna_ggsuite` carries,
+   drop `dna_gg` (the gg workspace brings it), publish it — before 2.
+   Chosen by the user on 2026-11-15: dna_readme, dna_guides,
+   dna_translate, dna_index, dna_blog, dna_vscode, dna_clean_code,
+   dna_scripts, dna_github, dna_dart; out: dna_gg, dna_install
+2. Maintenance: `gg do maintain --upgrade-dna` over every ggsuite repo, so
+   each one gets the new DNA check; remove the TypeScript layers from
+   `dna/_generated.json` of the Dart repos (req-dna-eco)
+
