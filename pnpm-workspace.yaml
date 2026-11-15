@@ -1,4 +1,2 @@
 minimumReleaseAgeExclude:
   - '@tssuite/helix-js@0.6.0'
-overrides:
-  "@tssuite\/dna-ggsuite": link:../dna_ggsuite
