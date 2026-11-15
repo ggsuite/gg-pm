@@ -99,7 +99,10 @@ to edit instead.
    drop `dna_gg` (the gg workspace brings it), publish it — before 2.
    Chosen by the user on 2026-11-15: dna_readme, dna_guides,
    dna_translate, dna_index, dna_blog, dna_vscode, dna_clean_code,
-   dna_scripts, dna_github, dna_dart; out: dna_gg, dna_install
+   dna_scripts, dna_github, dna_dart; out: dna_gg, dna_install.
+   Being implemented in ticket `dna_ggsuite_layers`; `dna_dart` is held
+   back there, because the published package still carries `dna_gg` and
+   `dna_install` and needs `dna_translate` ^0.3.0
 2. Maintenance: `gg do maintain --upgrade-dna` over every ggsuite repo, so
    each one gets the new DNA check; remove the TypeScript layers from
    `dna/_generated.json` of the Dart repos (req-dna-eco)
