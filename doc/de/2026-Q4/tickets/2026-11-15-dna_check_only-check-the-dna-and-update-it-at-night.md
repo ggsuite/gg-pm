@@ -98,7 +98,11 @@ Es dient dem Ziel
    veröffentlichen — vor 2.
    Vom Nutzer gewählt am 2026-11-15: dna_readme, dna_guides,
    dna_translate, dna_index, dna_blog, dna_vscode, dna_clean_code,
-   dna_scripts, dna_github, dna_dart; raus: dna_gg, dna_install
+   dna_scripts, dna_github, dna_dart; raus: dna_gg, dna_install.
+   Wird im Ticket `dna_ggsuite_layers` umgesetzt; `dna_install` bleibt
+   doch; `dna_dart` bleibt dort
+   vorerst draußen, weil das veröffentlichte Paket noch `dna_gg` und
+   `dna_install` mitbringt und `dna_translate` ^0.3.0 verlangt
 2. Wartung: `gg do maintain --upgrade-dna` über alle ggsuite-Repos, damit
    jedes den neuen DNA-Check bekommt; die TypeScript-Schichten aus
    `dna/_generated.json` der Dart-Repos entfernen (req-dna-eco)
