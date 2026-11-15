@@ -28,3 +28,18 @@
   gebrochen ist und warum
 - Note: akzeptiert am 2026-11-14, siehe
   [maintain-001](../concepts/decisions/maintain-001.md)
+
+## req-maintain-dna: Ein nächtlicher Wartungslauf hält die DNA aktuell
+
+- Status: accepted
+- Priority: must
+- Statement: Ein nächtlicher Wartungslauf hält die DNA jedes Repos aktuell — der Repos von ggsuite und aller anderen Repos des Oceans
+- Why: [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md)
+  — wenn Tickets die DNA nicht mehr aktualisieren
+  ([req-dna-chk](dna.md#req-dna-chk-eine-prüfung-belegt-dass-die-generierten-dna-dateien-unverändert-sind)),
+  ist die Wartung der einzige Ort, an dem neue DNA ankommt
+- Acceptance: Nach einer Nacht ohne Fehler liegen die DNA-Schichten keines
+  Repos des Oceans hinter ihrer neuesten veröffentlichten Version, die DNA
+  ist neu erzeugt und jedes geänderte Repo veröffentlicht
+- Note: vom Nutzer am 2026-11-15 vorgegeben. `gg do maintain --upgrade-dna`
+  gibt es; `--nightly` zieht nur die Abhängigkeiten hoch

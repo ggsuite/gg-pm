@@ -29,3 +29,4 @@ aktuell, weil der nächtliche Build sie jede Nacht hochzieht.
 
 - [publish](../requirements/publish.md)
 - [maintain](../requirements/maintain.md)
+- [dna](../requirements/dna.md)
