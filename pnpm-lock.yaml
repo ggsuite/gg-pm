@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@tssuite/helix-js': link:../helix-js
+
 importers:
 
   .:
@@ -15,8 +18,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@tssuite/helix-js':
-        specifier: ^0.5.1
-        version: 0.5.1
+        specifier: link:../helix-js
+        version: link:../helix-js
 
 packages:
 
@@ -72,10 +75,6 @@ packages:
     resolution: {integrity: sha512-tnjQNn088mXxM9dosFQ95QOUXZ0uiT4blPoj2/W4+neKd8RDY5n4smLl1iEQ+2DIx2NMGZBJC/+7Wbz4upvycQ==}
     engines: {node: '>=22'}
 
-  '@tssuite/helix-js@0.5.1':
-    resolution: {integrity: sha512-8i4zsO3uu3i9O8Ns5hFLVAtd3K4QiBP5v7QP7+s0an9idfC8KDt7AvuZkSZ2nh6iD5NKWN2f3ydRpblLFpv8pA==}
-    engines: {node: '>=22'}
-
 snapshots:
 
   '@ggdna/dna-blog@0.4.0': {}
@@ -118,5 +117,3 @@ snapshots:
       '@ggdna/dna-scripts': 0.3.0
       '@ggdna/dna-translate': 0.4.0
       '@ggdna/dna-vscode': 0.4.0
-
-  '@tssuite/helix-js@0.5.1': {}
