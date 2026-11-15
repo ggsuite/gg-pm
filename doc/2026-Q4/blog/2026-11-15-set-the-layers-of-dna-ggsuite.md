@@ -25,9 +25,10 @@ found in the LICENSE file in the root of this package.
 ## Implementation
 
 - `dna_ggsuite` now carries dna_readme, dna_guides, dna_translate,
-  dna_index, dna_blog, dna_vscode, dna_clean_code, dna_scripts and
+  dna_index, dna_blog, dna_install, dna_vscode, dna_clean_code, dna_scripts and
   dna_github
-- `dna_gg` is out, the gg workspace brings it; `dna_install` is out
+- `dna_gg` is out, the gg workspace brings it; `dna_install` stays,
+  unlike first chosen
 - A major release of `dna_ggsuite`
 
 ## Open Points
