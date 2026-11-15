@@ -96,6 +96,9 @@ Es dient dem Ziel
 1. Schichten von `dna_ggsuite`: festlegen, welche ggdna-Schichten
    `dna_ggsuite` trägt, `dna_gg` entfernen (bringt der gg-Workspace mit),
    veröffentlichen — vor 2.
+   Vom Nutzer gewählt am 2026-11-15: dna_readme, dna_guides,
+   dna_translate, dna_index, dna_blog, dna_vscode, dna_clean_code,
+   dna_scripts, dna_github, dna_dart; raus: dna_gg, dna_install
 2. Wartung: `gg do maintain --upgrade-dna` über alle ggsuite-Repos, damit
    jedes den neuen DNA-Check bekommt; die TypeScript-Schichten aus
    `dna/_generated.json` der Dart-Repos entfernen (req-dna-eco)
