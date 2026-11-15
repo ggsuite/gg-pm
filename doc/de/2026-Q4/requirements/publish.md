@@ -2,7 +2,7 @@
 
 ## req-publish-own: Ein Publish ändert nur die Abhängigkeiten des Tickets
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Ein Publish ändert nur die Versionsangaben von Abhängigkeiten, die im selben Ticket veröffentlicht wurden
 - Why: [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md),
@@ -14,7 +14,7 @@
 
 ## req-publish-get: Ein Publish löst auf, er zieht nicht hoch
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Ein Publish löst Abhängigkeiten mit get oder install auf, nie mit upgrade
 - Why: [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md),
@@ -26,7 +26,7 @@
 
 ## req-publish-chk: Ein Publish wiederholt die Tests nicht
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Ein Publish lässt die Tests nicht noch einmal auf Code laufen, der sie beim Commit bestanden hat; er löst auf und analysiert und hält die Prüfungen als bestanden fest
 - Why: [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md),

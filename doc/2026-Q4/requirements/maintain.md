@@ -2,7 +2,7 @@
 
 ## req-maintain-maj: Major versions are raised by maintenance only
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Major versions of dependencies are raised by maintenance only, never by commit, push or publish
 - Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md),
@@ -27,3 +27,18 @@
   and tells the developer which repo broke and why
 - Note: accepted on 2026-11-14, see
   [maintain-001](../concepts/decisions/maintain-001.md)
+
+## req-maintain-dna: A nightly maintenance run keeps the DNA current
+
+- Status: accepted
+- Priority: must
+- Statement: A nightly maintenance run keeps the DNA of every repo current — the repos of ggsuite and all other repos of the ocean
+- Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md)
+  — when tickets no longer update the DNA
+  ([req-dna-chk](dna.md#req-dna-chk-a-check-proves-that-the-generated-dna-files-are-unchanged)),
+  maintenance is the one place where new DNA arrives
+- Acceptance: After a night without failures, the DNA layers of no repo of
+  the ocean are behind their newest released version, the DNA is
+  generated anew and every changed repo is published
+- Note: stated by the user on 2026-11-15. `gg do maintain --upgrade-dna`
+  exists; `--nightly` upgrades the dependencies only

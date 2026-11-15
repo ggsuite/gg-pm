@@ -3,8 +3,7 @@
 - Status: accepted
 - Date: 2026-11-14
 - Canonical source: diese Datei
-- Open work: mit dem Ticket `lean_publish_process` umsetzen, nach dem
-  Merge von `speed_up_gg`
+- Open work: keine — umgesetzt mit dem Ticket `lean_publish`
 
 ## Entscheidung
 

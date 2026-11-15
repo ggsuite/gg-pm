@@ -3,8 +3,8 @@
 - Status: accepted
 - Date: 2026-11-14
 - Canonical source: this file
-- Open work: implement it with the ticket `lean_publish_process`; set up
-  the computer
+- Open work: set up the computer — `gg do maintain --nightly` is
+  implemented by the ticket `lean_publish`
 
 ## Decision
 

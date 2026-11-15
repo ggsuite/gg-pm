@@ -3,8 +3,8 @@
 - Status: accepted
 - Date: 2026-11-14
 - Canonical source: diese Datei
-- Open work: mit dem Ticket `lean_publish_process` umsetzen; den Rechner
-  einrichten
+- Open work: den Rechner einrichten — `gg do maintain --nightly` ist mit
+  dem Ticket `lean_publish` umgesetzt
 
 ## Entscheidung
 

@@ -25,3 +25,12 @@ is known about it. The evidence behind the requirements of the area
 - An upgrade changes no code, only versions; that is why a nightly build
   may publish it without a review, see
   [maintain-001](../decisions/maintain-001.md)
+
+## Since the ticket `lean_publish`
+
+- `gg do maintain --nightly` is `--upgrade-deps --major`: the run a
+  computer of its own starts every night
+- A run with a failed or blocked repo exits with an error and writes
+  `<workspace>/.maintain/<run id>/report.txt`
+- Push and publish of a ticket upgrade nothing; new versions arrive
+  through the nightly build only

@@ -2,7 +2,7 @@
 
 ## req-publish-own: A publish changes only the dependencies of the ticket
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: A publish changes only the version constraints of dependencies that were published in the same ticket
 - Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md),
@@ -14,7 +14,7 @@
 
 ## req-publish-get: A publish resolves, it does not upgrade
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: A publish resolves dependencies with get or install, never with upgrade
 - Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md),
@@ -25,7 +25,7 @@
 
 ## req-publish-chk: A publish does not repeat the tests
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: A publish does not run the tests again on code that passed them at the commit; it resolves and analyzes, and records the checks as passed
 - Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md),

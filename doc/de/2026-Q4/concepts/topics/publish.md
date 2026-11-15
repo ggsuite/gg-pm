@@ -45,3 +45,16 @@ Für jedes Repo des Tickets, in dieser Reihenfolge (`_publishRepo` in
 
 - Was jeder Schritt kostet. Kein Publish wurde Schritt für Schritt
   gemessen; das Ticket `lean_publish_process` beginnt mit dieser Messung
+
+## Seit dem Ticket `lean_publish`
+
+- Ein Publish löst mit `dart pub get` oder `<pm> install` auf und führt
+  `Analyze` aus; er zieht nichts hoch und lässt `can commit` nicht laufen.
+  Die Schritte 2 und 4 der Liste oben fallen weg, Schritt 3 löst einmal
+  vor und einmal nach dem Release auf
+- `gg do push` und `gg one do publish` ziehen nur mit `--upgrade` hoch;
+  `do.upgrade.deps.majorVersions` ist standardmäßig false
+- pana vergibt die Punkte für aktuelle Abhängigkeiten noch 30 Tage, nachdem
+  eine neue Major-Version einer Abhängigkeit erschienen ist (pana 0.22.23,
+  `acceptableUpdateDelay`); ein Publish ohne Upgrade besteht pana also,
+  solange der nächtliche Build läuft

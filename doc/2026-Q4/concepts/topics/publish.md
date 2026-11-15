@@ -43,3 +43,16 @@ For every repo of the ticket, in this order (`_publishRepo` in
 
 - What each step costs. No publish was measured step by step; the ticket
   `lean_publish_process` starts with that measurement
+
+## Since the ticket `lean_publish`
+
+- A publish resolves with `dart pub get` or `<pm> install` and runs
+  `Analyze`; it neither upgrades nor runs `can commit`. Steps 2 and 4 of
+  the list above are gone, step 3 resolves once before and once after
+  the release
+- `gg do push` and `gg one do publish` upgrade only with `--upgrade`;
+  `do.upgrade.deps.majorVersions` defaults to false
+- pana keeps granting the points for up-to-date dependencies for 30 days
+  after a new major version of a dependency is released (pana 0.22.23,
+  `acceptableUpdateDelay`), so a publish without upgrade passes pana as
+  long as the nightly build runs

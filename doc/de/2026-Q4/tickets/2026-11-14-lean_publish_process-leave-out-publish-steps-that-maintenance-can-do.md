@@ -15,8 +15,8 @@ ohne dass jedes Ticket dafür bezahlt.
 Es ist für Entwickler, die Tickets mit vielen Repos veröffentlichen, und
 dient dem Ziel
 [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md).
-Das Ticket ist nur geplant. Umgesetzt wird es nach dem Merge des Tickets
-`speed_up_gg`, weil beide dieselbe Funktion ändern.
+Umgesetzt mit dem Ticket `lean_publish` (begonnen am 2026-11-15), nach
+dem Merge von `speed_up_gg`.
 
 ## Anforderungen
 
@@ -36,57 +36,63 @@ der Plan beruht: [publish-001](../concepts/decisions/publish-001.md) und
 ## Betroffene Repos
 
 - `gg_multi_do_publish`: `_publishRepo` zieht nichts mehr hoch und lässt
-  `can commit` nicht mehr laufen; es löst auf, analysiert und schreibt
-  den Hash der Prüfungen; `_refreshDependencies` nutzt get oder install
-- `gg_one_do_publish`: Auch `gg one do publish` zieht standardmäßig nichts
-  hoch; heute lässt es das Upgrade nur mit `--no-upgrade` aus
-- `gg_one_commit`: Das Upgrade überspringt Major-Versionen nur auf
-  Wunsch; der Standard von `do.upgrade.deps.majorVersions` wird false
-- `gg_multi_commit`: `gg do push` zieht nichts mehr hoch
-- `gg_one_core`: ein Weg, die Prüfungen für den Commit des Publish nach
-  get und analyze als bestanden festzuhalten, ohne die Tests
-- `gg_localize_refs`: sagt, welche Manifest-Zeilen es geändert hat, damit
-  ein Test belegen kann, dass sich sonst nichts geändert hat
-- `gg_multi_maintain`: der nächtliche Build — jede Organisation des
-  Oceans, Abhängigkeiten mit Major-Versionen, keine Rückfrage, kein
-  Review, selbst veröffentlichen, bei dem Repo anhalten, das eine
-  Major-Version bricht, und es dem Entwickler sagen
-- `gg` und `dna_gg`: Der Development-Guide sagt, was ein Publish tut und
-  was der nächtliche Build tut; ein Guide zum Einrichten des Rechners
-  für den nächtlichen Build
+  `can commit` nicht mehr laufen; es löst mit get oder install auf und
+  führt `Analyze` aus gg_one_core aus. Sein System-Commit hält den Hash
+  fest, den `did commit` und der Quick Check lesen
+- `gg_one_do_publish`: `gg one do publish` zieht nur mit `--upgrade` hoch
+- `gg_one_core`: Der Standard von `do.upgrade.deps.majorVersions` wird
+  false. Eine `.gg/gg_rc`, die ein älteres gg geschrieben hat, nennt true
+  ausdrücklich und behält es — das zählt nur noch bei einem Upgrade, um
+  das jemand bittet
+- `gg_one_commit`: Dokumentation und Tests des neuen Standards
+- `gg_multi_commit`: `gg do push` zieht nur mit `--upgrade` hoch
+- `gg_multi_maintain`: `gg do maintain --nightly` (`--upgrade-deps
+  --major`); ein Lauf mit Problemen schreibt `report.txt` in seinen
+  Lauf-Ordner; das README erklärt, wie man den Rechner des nächtlichen
+  Builds einrichtet
+- `dna_gg`: Der Development-Guide und die Skills `/gg-push` und
+  `/gg-publish` sagen, was Push und Publish tun und was der nächtliche
+  Build tut
 
 ## Schritte
 
 1. Einen Publish eines echten Tickets pro Schritt mit dem Prozess-Trace
-   messen: was das Upgrade, das wiederholte `can commit` und das
-   Auffrischen kosten
-2. Ohne Upgrade veröffentlichen: `DoUpgradeDeps` aus `_publishRepo`
-   nehmen und `_refreshDependencies` `dart pub get` oder `<pm> install`
-   ausführen lassen
-3. Belegen, dass ein Publish nur die Abhängigkeiten des Tickets ändert:
-   Ein Test vergleicht das Manifest vorher und nachher
-4. `can commit` im Publish durch `dart pub get` und `dart analyze`
-   ersetzen und den Hash der Prüfungen für den Commit des Publish
-   schreiben, damit der Quick Check auf GitHub besteht
-5. Upgrades aus Commit, Push und Publish nehmen: Der Standard für
-   Major-Versionen wird false, und `gg do push` zieht nichts mehr hoch
-6. Den nächtlichen Build auf `gg do maintain` aufbauen: alle Repos in
-   Abhängigkeitsreihenfolge, Major-Versionen eingeschlossen,
-   veröffentlichen ohne Review; bricht eine Major-Version ein Repo,
-   anhalten und dem Entwickler sagen, welches Repo und warum
-7. Den Rechner des nächtlichen Builds einrichten und den Guide dazu
-   schreiben: gg, die Zugangsdaten, der Zeitplan
-8. Die Guides schreiben: was ein Publish tut, was der nächtliche Build
-   tut, wie man seinen Bericht liest
-9. Noch einmal messen und mit Schritt 1 vergleichen
+   messen — offen: Noch kein Ticket wurde mit dem neuen Ablauf
+   veröffentlicht
+2. Ohne Upgrade veröffentlichen — erledigt
+3. Belegen, dass ein Publish nur die Abhängigkeiten des Tickets ändert —
+   Unit-Tests zeigen, dass ein Publish `dart pub get` ausführt, kein
+   Upgrade, und nur die Constraints der Repos schreibt, die er
+   veröffentlicht hat. Ein Test, der die Manifeste eines echten Publish
+   vergleicht, steht noch aus
+4. `can commit` im Publish durch get und analyze ersetzen — erledigt.
+   Eine neue API war nicht nötig: Der System-Commit des Publish hält den
+   Hash, den der Quick Check liest, schon fest
+5. Upgrades aus Commit, Push und Publish nehmen — erledigt
+6. Den nächtlichen Build auf `gg do maintain` aufbauen — erledigt:
+   `--nightly`. Ein gebrochenes Repo blockiert die Repos, die von ihm
+   abhängen, der Lauf endet mit einem Fehler und schreibt `report.txt`
+7. Den Rechner des nächtlichen Builds einrichten — der Guide steht im
+   README von `gg_multi_maintain`; der Rechner selbst ist noch
+   einzurichten
+8. Die Guides schreiben — erledigt
+9. Noch einmal messen und mit Schritt 1 vergleichen — offen
+
+Beim Umsetzen entschieden:
+
+- TypeScript: `Analyze` aus gg_one_core führt in einem TypeScript-Repo
+  schon das Lint-Skript aus `package.json` aus
+- Ein Release, das nur hochzieht, behält die Regel von `gg do maintain`:
+  minor, wenn eine Abhängigkeit ihre alte Grenze verlässt, sonst patch
+- Der Entwickler erfährt von einem gebrochenen Repo über den Exit-Code
+  und die `report.txt` des Laufs
+- pana vergibt die Punkte für aktuelle Abhängigkeiten noch 30 Tage, nachdem
+  eine neue Major-Version einer Abhängigkeit erschienen ist. Ein Publish
+  ohne Upgrade besteht pana deshalb, solange der nächtliche Build läuft
 
 ## Offene Fragen
 
-- Welche Zugangsdaten hält der Rechner des nächtlichen Builds für GitHub,
-  pub.dev und npm, und wer betreut ihn?
-- Wie erfährt der Entwickler, dass eine Major-Version ein Repo gebrochen
-  hat: eine Mail, ein Issue, ein Ticket?
-- Was ersetzt `dart analyze` in einem TypeScript-Repo? Vorschlag: das
-  Lint des Repos, `tsc --noEmit` und eslint
-- Welche Version bekommt ein Release, das nur hochzieht? `gg do maintain`
-  hat `--version-increment`; Vorschlag: patch
+- Wer betreut den Rechner des nächtlichen Builds, und welches Konto hält
+  seine Zugangsdaten für GitHub, pub.dev und npm?
+- Soll eine gescheiterte Nacht zusätzlich eine Mail schicken oder ein
+  Issue anlegen?

@@ -1,9 +1,9 @@
 {
-  "name": "@ggsuite/gg-pm",
+  "name": "@ggsuite/gg_pm",
   "version": "0.0.1",
   "description": "Project management for gg: goals, requirements, concepts, plans, decisions and blog",
-  "homepage": "https://github.com/ggsuite/gg-pm",
-  "bugs": "https://github.com/ggsuite/gg-pm/issues",
+  "homepage": "https://github.com/ggsuite/gg_pm",
+  "bugs": "https://github.com/ggsuite/gg_pm/issues",
   "private": true,
   "license": "MIT",
   "engines": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ggsuite/gg-pm.git"
+    "url": "git+https://github.com/ggsuite/gg_pm.git"
   },
   "type": "module",
   "packageManager": "pnpm@11.22.0",
