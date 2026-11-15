@@ -18,6 +18,6 @@
   "devDependencies": {
     "@ggdna/dna-plan": "^2.0.0",
     "@tssuite/dna-ggsuite": "^1.0.2",
-    "@tssuite/helix-js": "^0.5.1"
+    "@tssuite/helix-js": "^0.6.0"
   }
 }
