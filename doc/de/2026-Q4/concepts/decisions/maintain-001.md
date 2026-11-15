@@ -1,6 +1,6 @@
 # maintain-001: Der nächtliche Build veröffentlicht selbst, auf einem eigenen Rechner
 
-- Status: accepted
+- Status: accepted; Veröffentlichen ersetzt durch [maintain-002](maintain-002.md)
 - Date: 2026-11-14
 - Canonical source: diese Datei
 - Open work: den Rechner einrichten — `gg do maintain --nightly` ist mit
