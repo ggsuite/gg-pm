@@ -5,7 +5,16 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@ggdna/dna-clean-code': link:../dna_clean_code
+  '@ggdna/dna-blog': link:../dna_blog
   '@tssuite/dna-ggsuite': link:../dna_ggsuite
+  '@ggdna/dna-github': link:../dna_github
+  '@ggdna/dna-guides': link:../dna_guides
+  '@ggdna/dna-index': link:../dna_index
+  '@ggdna/dna-readme': link:../dna_readme
+  '@ggdna/dna-scripts': link:../dna_scripts
+  '@ggdna/dna-translate': link:../dna_translate
+  '@ggdna/dna-vscode': link:../dna_vscode
 
 importers:
 
