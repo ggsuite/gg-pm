@@ -1,8 +1,8 @@
-# gg-pm
+# gg_pm
 
 English | [Deutsch](README.de.md)
 
-[![Tests](https://github.com/ggsuite/gg-pm/actions/workflows/quick_check.yaml/badge.svg)](https://github.com/ggsuite/gg-pm/actions/workflows/quick_check.yaml)
+[![Tests](https://github.com/ggsuite/gg_pm/actions/workflows/quick_check.yaml/badge.svg)](https://github.com/ggsuite/gg_pm/actions/workflows/quick_check.yaml)
 
 Project management for gg: goals, requirements, concepts, plans, decisions
 and blog. It holds no code.
@@ -26,8 +26,8 @@ repos of the organization `ggsuite`.
 Clone the repo and install the DNA layers.
 
 ```bash
-git clone git@github.com:ggsuite/gg-pm.git
-cd gg-pm
+git clone git@github.com:ggsuite/gg_pm.git
+cd gg_pm
 pnpm install
 ```
 

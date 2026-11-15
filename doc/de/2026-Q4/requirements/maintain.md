@@ -2,7 +2,7 @@
 
 ## req-maintain-maj: Major-Versionen zieht nur die Wartung hoch
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Major-Versionen von Abhängigkeiten zieht nur die Wartung hoch, nie Commit, Push oder Publish
 - Why: [Ein Ticket in Minuten veröffentlichen](../goals/publish-a-ticket-in-minutes.md),

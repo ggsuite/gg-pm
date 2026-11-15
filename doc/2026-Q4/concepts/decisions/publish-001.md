@@ -3,8 +3,7 @@
 - Status: accepted
 - Date: 2026-11-14
 - Canonical source: this file
-- Open work: implement it with the ticket `lean_publish_process`, after
-  `speed_up_gg` is merged
+- Open work: none — implemented by the ticket `lean_publish`
 
 ## Decision
 

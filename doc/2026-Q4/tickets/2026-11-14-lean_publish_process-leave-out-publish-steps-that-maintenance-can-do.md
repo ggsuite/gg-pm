@@ -13,8 +13,8 @@ versions without every ticket paying for it.
 
 It is for developers who publish tickets with many repos, and it serves
 the goal [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md).
-The ticket is planned only. It is implemented after the ticket
-`speed_up_gg` is merged, because both change the same function.
+Implemented by the ticket `lean_publish` (started 2026-11-15), after
+`speed_up_gg` was merged.
 
 ## Requirements
 
@@ -34,54 +34,58 @@ on: [publish-001](../concepts/decisions/publish-001.md) and
 ## Affected repos
 
 - `gg_multi_do_publish`: `_publishRepo` no longer upgrades and no longer
-  runs `can commit`; it resolves, analyzes and writes the hash of the
-  checks; `_refreshDependencies` uses get or install
-- `gg_one_do_publish`: `gg one do publish` does not upgrade by default
-  either; today it only skips the upgrade with `--no-upgrade`
-- `gg_one_commit`: the upgrade crosses major versions only when asked;
-  the default of `do.upgrade.deps.majorVersions` becomes false
-- `gg_multi_commit`: `gg do push` no longer upgrades anything
-- `gg_one_core`: a way to record the checks as passed for the commit of
-  the publish after get and analyze, without the tests
-- `gg_localize_refs`: tells which manifest lines it changed, so a test
-  can prove that nothing else did
-- `gg_multi_maintain`: the nightly build — every organization of the
-  ocean, dependencies with major versions, no prompt, no review, publish
-  on its own, stop at the repo a major version breaks and tell the
-  developer
-- `gg` and `dna_gg`: the development guide says what a publish does and
-  what the nightly build does; a guide for setting up the computer of
-  the nightly build
+  runs `can commit`; it resolves with get or install and runs `Analyze`
+  of gg_one_core. Its system commit records the hash that `did commit`
+  and the quick check read
+- `gg_one_do_publish`: `gg one do publish` upgrades only with
+  `--upgrade`
+- `gg_one_core`: the default of `do.upgrade.deps.majorVersions` becomes
+  false. A `.gg/gg_rc` written by an older gg spells out true and keeps
+  it — it only matters for an upgrade somebody asks for
+- `gg_one_commit`: documentation and tests of the new default
+- `gg_multi_commit`: `gg do push` upgrades only with `--upgrade`
+- `gg_multi_maintain`: `gg do maintain --nightly` (`--upgrade-deps
+  --major`); a run with problems writes `report.txt` into its run folder;
+  the README explains how to set up the computer of the nightly build
+- `dna_gg`: the development guide and the skills `/gg-push` and
+  `/gg-publish` say what push and publish do and what the nightly build
+  does
 
 ## Steps
 
-1. Measure one publish of a real ticket per step with the process trace:
-   what the upgrade, the repeated `can commit` and the refresh cost
-2. Publish without upgrade: take `DoUpgradeDeps` out of `_publishRepo`
-   and let `_refreshDependencies` run `dart pub get` or `<pm> install`
-3. Prove that a publish changes only the dependencies of the ticket: a
-   test compares the manifest before and after
-4. Replace `can commit` in the publish by `dart pub get` and
-   `dart analyze`, and write the hash of the checks for the commit of
-   the publish, so the quick check on GitHub passes
-5. Take upgrades out of commit, push and publish: the default for major
-   versions becomes false, and `gg do push` no longer upgrades anything
-6. Build the nightly build on `gg do maintain`: all repos in dependency
-   order, major versions included, publish without review; when a major
-   version breaks a repo, stop and tell the developer which repo and why
-7. Set up the computer of the nightly build and write the guide for it:
-   gg, the credentials, the schedule
-8. Write the guides: what a publish does, what the nightly build does,
-   how to read its report
-9. Measure again and compare with step 1
+1. Measure one publish of a real ticket per step with the process trace
+   — open: no ticket was published with the new flow yet
+2. Publish without upgrade — done
+3. Prove that a publish changes only the dependencies of the ticket —
+   unit tests show that a publish runs `dart pub get`, no upgrade, and
+   writes only the constraints of the repos it published. A test that
+   compares the manifests of a real publish is still open
+4. Replace `can commit` in the publish by get and analyze — done. No new
+   API was needed: the system commit of the publish already records the
+   hash the quick check reads
+5. Take upgrades out of commit, push and publish — done
+6. Build the nightly build on `gg do maintain` — done: `--nightly`. A
+   broken repo blocks the repos that depend on it, the run exits with an
+   error and writes `report.txt`
+7. Set up the computer of the nightly build — the guide is in the README
+   of `gg_multi_maintain`; the computer itself is still to be set up
+8. Write the guides — done
+9. Measure again and compare with step 1 — open
+
+Decided while implementing:
+
+- TypeScript: `Analyze` of gg_one_core already runs the lint script of
+  `package.json` in a TypeScript repo
+- An upgrade-only release keeps the rule of `gg do maintain`: minor when
+  a dependency leaves its old constraint, otherwise patch
+- The developer learns of a broken repo from the exit code and the
+  `report.txt` of the run
+- pana grants the points for up-to-date dependencies for 30 days after a
+  new major version of a dependency is released. A publish without
+  upgrade therefore passes pana as long as the nightly build runs
 
 ## Open questions
 
-- Which credentials does the computer of the nightly build hold for
-  GitHub, pub.dev and npm, and who looks after it?
-- How is the developer told that a major version broke a repo: a mail, an
-  issue, a ticket?
-- What replaces `dart analyze` in a TypeScript repo? Proposal: the lint
-  of the repo, `tsc --noEmit` and eslint
-- Which version does an upgrade-only release get? `gg do maintain` has
-  `--version-increment`; proposal: patch
+- Who looks after the computer of the nightly build, and which account
+  holds its credentials for GitHub, pub.dev and npm?
+- Should a failed night also send a mail or open an issue?

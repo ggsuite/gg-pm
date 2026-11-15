@@ -2,7 +2,7 @@
 
 ## req-maintain-maj: Major versions are raised by maintenance only
 
-- Status: accepted
+- Status: done (ticket `lean_publish`)
 - Priority: must
 - Statement: Major versions of dependencies are raised by maintenance only, never by commit, push or publish
 - Why: [publish a ticket in minutes](../goals/publish-a-ticket-in-minutes.md),

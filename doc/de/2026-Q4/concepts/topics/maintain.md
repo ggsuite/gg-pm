@@ -27,3 +27,12 @@ was darüber bekannt ist. Die Belege hinter den Anforderungen des Bereichs
 - Ein Upgrade ändert keinen Code, nur Versionen; deshalb darf ein
   nächtlicher Build es ohne Review veröffentlichen, siehe
   [maintain-001](../decisions/maintain-001.md)
+
+## Seit dem Ticket `lean_publish`
+
+- `gg do maintain --nightly` ist `--upgrade-deps --major`: der Lauf, den
+  ein eigener Rechner jede Nacht startet
+- Ein Lauf mit einem gescheiterten oder blockierten Repo endet mit einem
+  Fehler und schreibt `<workspace>/.maintain/<lauf-id>/report.txt`
+- Push und Publish eines Tickets ziehen nichts hoch; neue Versionen kommen
+  nur noch über den nächtlichen Build

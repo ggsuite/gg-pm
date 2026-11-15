@@ -1,8 +1,8 @@
-# gg-pm
+# gg_pm
 
 [English](README.md) | Deutsch
 
-[![Tests](https://github.com/ggsuite/gg-pm/actions/workflows/quick_check.yaml/badge.svg)](https://github.com/ggsuite/gg-pm/actions/workflows/quick_check.yaml)
+[![Tests](https://github.com/ggsuite/gg_pm/actions/workflows/quick_check.yaml/badge.svg)](https://github.com/ggsuite/gg_pm/actions/workflows/quick_check.yaml)
 
 Projektmanagement für gg: Ziele, Anforderungen, Konzepte, Pläne,
 Entscheidungen und Blog. Code enthält es nicht.
@@ -26,8 +26,8 @@ Pakete. Sein Code liegt in den `gg_*`-Repos der Organisation `ggsuite`.
 Das Repo klonen und die DNA-Layer installieren.
 
 ```bash
-git clone git@github.com:ggsuite/gg-pm.git
-cd gg-pm
+git clone git@github.com:ggsuite/gg_pm.git
+cd gg_pm
 pnpm install
 ```
 
